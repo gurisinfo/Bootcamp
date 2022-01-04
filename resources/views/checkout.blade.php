@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col-lg-5 col-12">
                             <div class="item-bootcamp">
-                                <img src="/assets/images/item_bootcamp.png" alt="" class="cover">
+                                <img src="{{ url('assets/images/item_bootcamp.png') }}" alt="" class="cover">
                                 <h1 class="package">
                                     GILA BELAJAR
                                 </h1>
@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-lg-1 col-12"></div>
                         <div class="col-lg-6 col-12">
-                            <form action="#" class="basic-form">
+                            <form action="{{ route('success') }}" class="basic-form">
                                 <div class="mb-4">
                                     <label for="exampleInputEmail1" class="form-label">Full Name</label>
                                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -61,7 +61,7 @@
                                 </div>
                                 <button type="submit" class="w-100 btn btn-primary">Pay Now</button>
                                 <p class="text-center subheader mt-4">
-                                    <img src="/assets/images/ic_secure.svg" alt=""> Your payment is secure and encrypted.
+                                    <img src="{{ url('assets/images/ic_secure.svg') }}" alt=""> Your payment is secure and encrypted.
                                 </p>
                             </form>
                         </div>
