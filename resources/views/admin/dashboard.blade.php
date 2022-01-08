@@ -6,7 +6,7 @@
             <div class="col-8 offset-2">
                 <div class="card">
                     <div class="card-header">
-                        My Camps
+                        Camps Data
                     </div>
                     <div class="card-body">
                         @include('components.alert')
