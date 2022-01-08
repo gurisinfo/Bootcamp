@@ -9,7 +9,7 @@ use App\Http\Requests\User\Checkout\Store;
 use App\Mail\Checkout\AfterCheckout;
 use App\Models\Camp;
 use Auth;
-// use Mail;
+use Mail;
 // use Str;
 // use Midtrans;
 
@@ -30,8 +30,12 @@ class CheckoutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Camp $camp)
+    public function create(Camp $camp, Request $request)
     {
+        if ($camp->isRegistered) {
+            $request->session()->flash('error', "You already registered on {$camp->title} camp.");
+            return redirect(route('dashboard'));
+        }
         return view('checkout.create', [
             'camp' => $camp
         ]);
@@ -43,8 +47,10 @@ class CheckoutController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Camp $camp)
+    public function store(Store $request, Camp $camp)
     {
+        // return $request->all();
+
         // mapping request data
         $data = $request->all();
         $data['user_id'] = Auth::id();
@@ -64,7 +70,7 @@ class CheckoutController extends Controller
         // $this->getSnapRedirect($checkout);
 
         // sending email
-        // Mail::to(Auth::user()->email)->send(new AfterCheckout($checkout));
+        Mail::to(Auth::user()->email)->send(new AfterCheckout($checkout));
 
         return redirect(route('checkout.success'));
     }
@@ -118,4 +124,9 @@ class CheckoutController extends Controller
     {
         return view('checkout.success');
     }
+
+    // public function invoice (Checkout $checkout)
+    // {
+    //     return $checkout;
+    // }
 }
