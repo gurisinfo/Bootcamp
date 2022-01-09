@@ -18,14 +18,28 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    // non midtrans
+    // protected $fillable = [
+    //     'name',
+    //     'email',
+    //     'password',
+    //     'avatar',
+    //     'occupation',
+    //     'is_admin',
+    //     'email_verified_at',
+    // ];
+
+    // use midtrans
     protected $fillable = [
         'name',
         'email',
         'password',
         'avatar',
         'occupation',
+        'phone', 
+        'address',
         'is_admin',
-        'email_verified_at',
+        'email_verified_at'
     ];
 
     /**

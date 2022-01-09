@@ -11,12 +11,17 @@ class Checkout extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'camp_id', 'card_number', 'expired', 'cvc', 'is_paid'];
+    // non midtrans
+    // protected $fillable = ['user_id', 'camp_id', 'card_number', 'expired', 'cvc', 'is_paid'];
 
-    public function setExpiredAttribute($value)
-    {
-        $this->attributes['expired'] = date('Y-m-t', strtotime($value));
-    }
+    // use midtrans
+    protected $fillable = ['user_id', 'camp_id', 'payment_status', 'midtrans_url', 'midtrans_booking_code'];
+
+    // non midtrans
+    // public function setExpiredAttribute($value)
+    // {
+    //     $this->attributes['expired'] = date('Y-m-t', strtotime($value));
+    // }
 
 
     /**
